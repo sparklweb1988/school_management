@@ -28,6 +28,10 @@ DEBUG = False
 ALLOWED_HOSTS = ['school-management-8wvc.onrender.com','www.school-management-8wvc.onrender.com',]
 
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://school-management-8wvc.onrender.com',  
+    'https://www.school-management-8wvc.onrender.com', 
+]
 
 
 
