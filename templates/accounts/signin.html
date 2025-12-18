@@ -8,7 +8,7 @@
     <meta name="keywords" content="" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>UCA</title> {% load static %} <!-- bootstrap core css -->
+    <title>United </title> {% load static %} <!-- bootstrap core css -->
     <link rel="stylesheet" type="text/css" href="{% static 'school/css/bootstrap.css'%}" %}" />
     <!-- progress barstle -->
     <link rel="stylesheet" href="{% static 'school/css/css-circular-prog-bar.css'%}"> <!-- fonts style -->
@@ -53,24 +53,32 @@
       <!-- contact section -->
 
       <section class="contact_section layout_padding">
-        <div class="container">
+       <div class="container">
+   <h2 class="main-heading">Login</h2>
 
-          <h2 class="main-heading">
-            Login
-
-          </h2>
-
-          <div class="">
-            <div class="contact_section-container">
-              <div class="row">
-                <div class="col-md-6 mx-auto">
-                  <div class="contact-form">
-                    <form method='POST' action="{% url 'signin'%}">
-                      {% csrf_token%}
-                      <div>
-                        <input type="text" placeholder="Username" name='username'>
-                      </div>
-
+   <div class="">
+      <div class="contact_section-container">
+         <div class="row">
+            <div class="col-md-6 mx-auto">
+               <div class="contact-form">
+                  <form method="POST" action="{% url 'signin' %}">
+                     {% csrf_token %}
+                     <div>
+                        <input type="text" placeholder="Username" name="username">
+                     </div>
+                     <div>
+                        <input type="password" placeholder="Password" name="password">
+                     </div>
+                     <div>
+                        <button type="submit">Log in</button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
                       <!-- <div>
                         <input type="email" placeholder="Email">
                       </div> -->
