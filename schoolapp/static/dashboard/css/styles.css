@@ -1,0 +1,461 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+.container{
+    width: 80%;
+    margin: 40px auto;
+}
+
+
+.container h2{
+    text-align: center;
+}
+
+
+
+.footer{
+    background: navy;
+    margin-top: 50px;
+    padding: 20px;
+}
+
+.footer footer{
+    text-align: center;
+    padding: 10px 8%;
+}
+
+
+.footer footer p{
+    text-align: center;
+    color: white;
+    font-size: 16px;
+}
+
+
+/* Desktop and larger screens */
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 5%;
+    align-items: center;
+    height: 70px;
+    box-shadow: 8px 6px 4px rgba(0, 0, 0, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    background: navy;
+    color: white;
+    font-size: 15px;
+}
+
+.logo {
+    text-decoration: none;
+    font-size: 18px;
+    color: navy;
+}
+
+/* Mobile and smaller screens */
+@media (max-width: 768px) {
+    nav {
+        padding: 10px 2%;
+        height: auto;
+        /* Remove fixed height for better responsiveness */
+    }
+
+    nav ul {
+        flex-direction: column;
+        /* Stack the navigation items vertically */
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+        /* Reduce margin between items */
+    }
+
+    nav ul li a {
+        font-size: 14px;
+        /* Make the font size smaller */
+        padding: 10px 20px;
+        /* Adjust padding for mobile */
+    }
+
+    .logo {
+        font-size: 16px;
+        /* Adjust logo font size for smaller screens */
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+    nav ul li a {
+        font-size: 13px;
+        /* Smaller font for very small screens */
+        padding: 8px 15px;
+        /* Smaller padding for extra small screens */
+    }
+
+    .logo {
+        font-size: 14px;
+        /* Smaller logo font size for very small screens */
+    }
+}
+
+/* CARDS */
+
+.container h1{
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    margin-top: 90px;
+}
+
+
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.8rem;
+  
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Desktop */
+@media (min-width: 900px) {
+    .cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.card {
+    padding: 1.9rem;
+    border: 1px solid #e0e0e0;
+    border-bottom: 4px solid navy;
+    border-radius: 8px;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+   
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card h2 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+}
+
+.card p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+
+
+/* TABLE AND FORM */
+
+/* CENTER ALIGNMENT */
+.table-wrapper,
+.form-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+/* TABLE STYLES */
+.responsive-table {
+    width: 100%;
+    max-width: 1000px;
+    border-collapse: collapse;
+}
+
+.responsive-table th,
+.responsive-table td {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.responsive-table th {
+    background-color: #f5f5f5;
+}
+
+.actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* BUTTONS */
+.btn {
+    padding: 0.4rem 0.75rem;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #fff;
+}
+
+.view {
+    background-color: #007bff;
+}
+
+.edit {
+    background-color: #28a745;
+}
+
+.delete {
+    background-color: #dc3545;
+}
+
+/* FORM STYLES */
+.responsive-form {
+    width: 100%;
+    max-width: 600px;
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-top: 90px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+}
+
+.form-group input,
+.form-group select {
+    padding: 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 0.7rem;
+    border: none;
+    background-color: navy;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* MOBILE RESPONSIVE TABLE */
+@media (max-width: 768px) {
+
+    .responsive-table,
+    .responsive-table thead,
+    .responsive-table tbody,
+    .responsive-table th,
+    .responsive-table td,
+    .responsive-table tr {
+        display: block;
+    }
+
+    .responsive-table thead {
+        display: none;
+    }
+
+    .responsive-table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        padding: 0.75rem;
+    }
+
+    .responsive-table td {
+        border: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.4rem 0;
+    }
+
+    .responsive-table td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    /* Adjust form elements */
+    .form-wrapper {
+        padding: 0 1rem;
+    }
+
+    .responsive-form {
+        padding: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.85rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        font-size: 0.9rem;
+    }
+
+    .submit-btn {
+        font-size: 1rem;
+        padding: 1rem;
+    }
+}
+
+/* Extra Small Screens (Smartphones in portrait) */
+@media (max-width: 480px) {
+
+    /* Make table even more compact on smaller screens */
+    .responsive-table td {
+        padding: 0.4rem 0;
+        font-size: 0.9rem;
+    }
+
+    /* Form elements adjustments */
+    .form-group input,
+    .form-group select {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
+    .submit-btn {
+        font-size: 0.95rem;
+    }
+
+    .page-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    #pageInfo {
+        font-size: 0.8rem;
+    }
+}
+
+/* Pagination Adjustments */
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.page-btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: navy;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.page-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#pageInfo {
+    font-size: 0.9rem;
+}
+
+.primary {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 10px;
+    background-color: blue;
+    margin-left: 10px;
+}
+
+
+
+/* Table Styling */
+
+/* Table Styling */
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Remove space between borders */
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    /* Light background color for the table */
+}
+
+/* Header Row Styling */
+.styled-table thead {
+    background-color: #4CAF50;
+    /* Green background for the header */
+    color: white;
+    /* White text color */
+    text-align: left;
+    /* Align text to the left */
+}
+
+/* Header Cells (th) Styling */
+.styled-table th {
+    padding: 12px 15px;
+    /* Padding inside header cells */
+    font-weight: bold;
+    /* Bold text for headers */
+    border-bottom: 2px solid #ddd;
+    /* Border at the bottom of the header row */
+}
+
+/* Table Row Styling */
+.styled-table tr {
+    transition: background-color 0.3s ease;
+    /* Smooth transition for hover effect */
+}
+
+/* Hover Effect for Table Rows */
+.styled-table tr:hover {
+    background-color: #f1f1f1;
+    /* Light grey background when hovering over a row */
+}
+
+/* Alternate Row Colors (Even and Odd Rows) */
+.styled-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+    /* Light grey for even rows */
+}
+
+.styled-table tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* White for odd rows */
+}

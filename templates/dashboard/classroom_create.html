@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %} {% block content %}
+<div class="container">
+  <!-- FORM -->
+  <h1>Add Class</h1>
+  <div class="form-wrapper">
+    <form
+      class="responsive-form"
+      action="{% url 'classroom_create' %}"
+      method="POST"
+    >
+      {% csrf_token %}
+
+      <div class="form-group">
+        <label for="name">Class Name</label>
+        <input type="text" name="name" id="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea name="desc" id="desc" required></textarea>
+      </div>
+
+      <!-- Teacher selection (optional) -->
+      <div class="form-group">
+        <label for="teacher">Assign Teacher (Optional)</label>
+        <select name="teacher" id="teacher">
+          <option value="">Select a teacher</option>
+          {% for teacher in teachers %}
+          <option value="{{ teacher.id }}">{{ teacher.user_profile }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Add Class</button>
+      <br /><br />
+
+      <td>
+        <a href="{% url 'classroom_list' %}" class="btn view">Go Back</a>
+      </td>
+    </form>
+  </div>
+</div>
+{% endblock content %}

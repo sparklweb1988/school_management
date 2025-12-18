@@ -1,0 +1,65 @@
+{% extends 'dashboard/base.html'%}
+
+
+{% block content%}
+
+<div class="container">
+    <!-- FORM -->
+    <div class="form-wrapper">
+        <form class="responsive-form" action="{% url 'fees_create'%}" method='POST'>
+            {% csrf_token%}
+            <div class="form-group">
+                <label for="student">Student:</label>
+                <select name="student" id="student" required>
+                    <option value="">Select a student</option>
+                    {% for student in students %}
+                    <option value="{{ student.id }}">{{ student.user_profile.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="amount">Amount:</label>
+                <input type="number" name="amount" id="amount" step="0.01" required>
+            </div>
+
+            <div class="form-group">
+                <label for="payment_method">Payment Method:</label>
+                <input type="text" name="payment_method" id="payment_method" placeholder="e.g., Cash, Card" required>
+            </div>
+
+            <div class="form-group">
+                <!-- Payment Status -->
+                <label for="payment_status">Payment Status:</label>
+                <select name="payment_status" id="payment_status" required>
+                    <option value="Pending">Pending</option>
+                    <option value="Paid">Paid</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="cashier">Cashier:</label>
+                <select name="cashier" id="cashier" required>
+                    <option value="">Select Cashier</option> <!-- default option -->
+
+                    {% for cashier in cashiers %}
+                    <option value="{{ cashier.id }}">{{ cashier.username }}</option>
+                    {% endfor %}
+
+                    {% if cashiers|length == 0 %}
+                    <option value="">No cashiers available</option>
+                    {% endif %}
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Add Fees</button>
+            <br><br>
+            <td>
+
+                <a href="{% url 'fee_list'%}" class="btn view">Go Back</a>
+            </td>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content%}

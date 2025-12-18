@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html'%} {% block content%}
+
+<div class="container">
+  <h1>Dashboard</h1>
+  <div class="cards">
+    <div class="card">
+      <h2>Teachers</h2>
+      <hr />
+      <p>Total Teachers : {{total_teachers}}</p>
+    </div>
+
+    <div class="card">
+      <h2>Students</h2>
+      <hr />
+      <p>Total Students : {{total_students}}</p>
+    </div>
+
+    <div class="card">
+      <h2>Classrooms</h2>
+      <hr />
+      <p>Total Classrooms : {{toatl_classroom}}</p>
+    </div>
+
+    <div class="card">
+      <h2>Subjects</h2>
+      <hr />
+      <p>Total Subjects: {{total_subjects}}</p>
+    </div>
+
+    <div class="card">
+      <h2>Results</h2>
+      <hr />
+      <p>Total Results: {{total_results}}</p>
+    </div>
+
+    <div class="card">
+      <h2>Fees</h2>
+      <hr />
+      <p>Total Fees: {{total_fees}}</p>
+    </div>
+  </div>
+</div>
+{% endblock content%}

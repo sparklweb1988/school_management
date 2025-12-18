@@ -1,0 +1,43 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Edit Subject: {{ subject.name }}</h1>
+  <div class="form-wrapper">
+    <form class="responsive-form" method="POST" action="{% url 'subject_update' subject.id %}">
+      {% csrf_token %}
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <!-- Subject Name -->
+      <div class="form-group">
+        <label for="name">Subject Name</label>
+        <input type="text" name="name" id="name" value="{{ subject.name }}" required />
+      </div>
+
+      <!-- Subject Description -->
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea name="desc" id="desc" required>{{ subject.description }}</textarea>
+      </div>
+
+      <!-- Teacher Selection (Multiple teachers) -->
+      <div class="form-group">
+        <label for="teacher">Assign Teacher(s)</label>
+        <select name="teacher" id="teacher" multiple>
+          {% for teacher in teachers %}
+          <option value="{{ teacher.id }}" {% if teacher.id in subject.teachers.all|pluck:"id" %}selected{% endif %}>
+            {{ teacher.user_profile.first_name }} {{ teacher.user_profile.last_name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Update Subject</button>
+      <br /><br />
+      <a href="{% url 'subject_list' %}" class="btn view">Go Back</a>
+    </form>
+  </div>
+</div>
+{% endblock content %}

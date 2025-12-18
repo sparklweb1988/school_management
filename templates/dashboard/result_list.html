@@ -1,0 +1,65 @@
+{% extends 'dashboard/base.html' %} {% block content %}
+<div class="container">
+  <h1>Welcome: {{ user.username }}</h1>
+  <h2>Result Dashboard</h2>
+  <br />
+
+  <!-- Button to Add a New Result -->
+  {% if request.user.is_superuser or request.user.role == 'admin' or request.user.role == 'teacher' %}
+  <td>
+    <a href="{% url 'result_create' %}" class="btn view">Add Result</a>
+  </td>
+  {% endif %}
+  <div class="table-wrapper">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Student</th>
+          <th>Subject</th>
+          <th>Session</th>
+          <th>Test 1</th>
+          <th>Test 2</th>
+          <th>Exam</th>
+          <th>Total</th>
+          <th>Date</th>
+          {% if request.user.is_superuser or request.user.role == 'admin' or request.user.role == 'teacher' %}
+          <th>Actions</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for result in results %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ result.student.user_profile }}</td>
+          <td>{{ result.subject.name }}</td>
+          <td>{{ result.session }}</td>
+          <td>{{ result.test_1 }}</td>
+          <td>{{ result.test_2 }}</td>
+          <td>{{ result.exam }}</td>
+          <td>{{ result.Total|floatformat:2 }}</td>
+          <!-- Display the Total with 2 decimal places -->
+          <td>{{ result.date }}</td>
+
+          {% if request.user.is_superuser or request.user.role == 'admin' or request.user.role == 'teacher' %}
+
+          <td class="actions">
+            <a href="{% url 'result_update' result.id %}" class="btn edit">Edit</a>
+            <a href="{% url 'delete_result' result.id %}" class="btn delete">Delete</a>
+          </td>
+          {% endif %}
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="10">No results found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <td>
+    <a href="{% url 'result_report'%}" class="btn view">Generate Result</a>
+  </td>
+</div>
+{% endblock content %}

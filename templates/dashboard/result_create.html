@@ -1,0 +1,66 @@
+{% extends 'dashboard/base.html' %} {% block content %}
+<div class="container">
+  <!-- FORM -->
+  <h1>Add Result</h1>
+  <div class="form-wrapper">
+    <form
+      class="responsive-form"
+      action="{% url 'result_create' %}"
+      method="POST"
+    >
+      {% csrf_token %}
+
+      <!-- Student Selection -->
+      <div class="form-group">
+        <label for="student">Student</label>
+        <select name="student" id="student" required>
+          <option value="">Select student</option>
+          {% for student in students %}
+          <option value="{{ student.id }}">{{ student.user_profile}}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Subject Selection -->
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <select name="subject" id="subject" required>
+          <option value="">Select subject</option>
+          {% for subject in subjects %}
+          <option value="{{ subject.id }}">{{ subject.name }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Test 1 -->
+      <div class="form-group">
+        <label for="test_1">Test 1</label>
+        <input type="number" name="test_1" id="test_1" required step="any" />
+      </div>
+
+      <!-- Test 2 -->
+      <div class="form-group">
+        <label for="test_2">Test 2</label>
+        <input type="number" name="test_2" id="test_2" required step="any" />
+      </div>
+
+      <!-- Exam -->
+      <div class="form-group">
+        <label for="exam">Exam</label>
+        <input type="number" name="exam" id="exam" required step="any" />
+      </div>
+
+      <!-- Session -->
+      <div class="form-group">
+        <label for="session">Session</label>
+        <input type="text" name="session" id="session" required />
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Add Result</button>
+      <br /><br />
+      <a href="{% url 'result_list' %}" class="btn view">Go Back</a>
+    </form>
+  </div>
+</div>
+{% endblock content %}

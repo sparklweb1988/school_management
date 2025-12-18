@@ -1,0 +1,52 @@
+<!-- teacher_edit.html -->
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Edit Teacher</h1>
+    <div class="form-wrapper">
+        <form class="responsive-form" action="{% url 'teacher_edit' id=teacher.id %}" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label>First Name</label>
+                <input type="text" name="first_name" value="{{ teacher.user_profile.first_name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" name="last_name" value="{{ teacher.user_profile.last_name }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" name="username" value="{{ teacher.user_profile.username }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" value="{{ teacher.user_profile.email }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Password (Leave empty to keep unchanged)</label>
+                <input type="password" name="password">
+            </div>
+
+            <div class="form-group">
+                <label>Subjects</label>
+                <select name="subjects" multiple required>
+                    {% for subject in subjects %}
+                    <option value="{{ subject.id }}" {% if subject in teacher.subjects.all %}selected{% endif %}>
+                        {{ subject.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="submit-btn">Update Teacher</button>
+            <br><br>
+            <a href="{% url 'teacher_list' %}" class="btn view">Go Back</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}

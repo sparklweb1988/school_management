@@ -1,0 +1,38 @@
+{% extends 'dashboard/base.html'%}
+
+
+{% block content%}
+
+<div class="container">
+    <!-- FORM -->
+    <div class="form-wrapper">
+        <form class="responsive-form" action="{% url 'cashier_create'%}" method='POST'>
+            {% csrf_token%}
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" required>
+            </div>
+
+
+
+            <button type="submit" class="submit-btn">Add Cashier</button>
+            <br><br>
+            <td>
+
+                <a href="{% url 'cashier_list'%}" class="btn view">Go Back</a>
+            </td>
+        </form>
+    </div>
+</div>
+</div>
+{% endblock content%}

@@ -1,0 +1,67 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<div class="container">
+  <h1>Edit Fee Payment for {{ fee.student.user_profile.username }}</h1>
+  <div class="form-wrapper">
+    <form class="responsive-form" method="POST" action="{% url 'fee_update' fee.id %}">
+      {% csrf_token %}
+      
+      <!-- Display error message if present -->
+      {% if error %}
+        <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <!-- Student Selection -->
+      <div class="form-group">
+        <label for="student">Student:</label>
+        <select name="student" id="student" required>
+          <option value="">Select a student</option>
+          {% for student in students %}
+          <option value="{{ student.id }}" {% if student.id == fee.student.id %}selected{% endif %}>
+            {{ student.user_profile.username }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Amount -->
+      <div class="form-group">
+        <label for="amount">Amount:</label>
+        <input type="number" name="amount" id="amount" value="{{ fee.amount }}" step="0.01" required>
+      </div>
+
+      <!-- Payment Method -->
+      <div class="form-group">
+        <label for="payment_method">Payment Method:</label>
+        <input type="text" name="payment_method" id="payment_method" value="{{ fee.payment_method }}" placeholder="e.g., Cash, Card" required>
+      </div>
+
+      <!-- Payment Status -->
+      <div class="form-group">
+        <label for="payment_status">Payment Status:</label>
+        <select name="payment_status" id="payment_status" required>
+          <option value="Pending" {% if fee.payment_status == 'Pending' %}selected{% endif %}>Pending</option>
+          <option value="Paid" {% if fee.payment_status == 'Paid' %}selected{% endif %}>Paid</option>
+        </select>
+      </div>
+
+      <!-- Cashier Selection -->
+      <div class="form-group">
+        <label for="cashier">Cashier:</label>
+        <select name="cashier" id="cashier" required>
+          <option value="">Select Cashier</option> <!-- default option -->
+          {% for cashier in cashiers %}
+          <option value="{{ cashier.id }}" {% if cashier.id == fee.cashier.id %}selected{% endif %}>{{ cashier.username }}</option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="submit-btn">Update Fee Payment</button>
+      <br /><br />
+      <a href="{% url 'fee_list' %}" class="btn view">Go Back</a>
+    </form>
+  </div>
+</div>
+{% endblock content %}

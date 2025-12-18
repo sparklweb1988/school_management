@@ -1,0 +1,59 @@
+{% extends 'dashboard/base.html' %} {% block content %}
+
+<div class="container">
+  <h1>Welcome: {{ user.username }}</h1>
+  <h2>Classroom Dashboard</h2>
+  <br />
+
+  <!-- Button to Add a New Class -->
+  {% if request.user.is_superuser or request.user.role == 'admin' or request.user.role == 'teacher' %}
+  <td>
+    <a href="{% url 'classroom_create' %}" class="btn view">Add Class</a>
+  </td>
+  {% endif %}
+
+  <div class="table-wrapper">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Class Name</th>
+          <th>Description</th>
+          <th>Teacher(s)</th>
+          <!-- Added column for Teachers -->
+          {% if request.user.is_superuser or request.user.role == 'admin' or request.user.role == 'teacher' %}
+          <th>Actions</th>
+          {% endif %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for classroom in classrooms %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ classroom.name }}</td>
+          <td>{{ classroom.description }}</td>
+
+          <!-- Show teacher(s) assigned to the class -->
+          <td>
+            {% if classroom.teacher %} {{ classroom.teacher.user_profile }}
+            <br />
+            {% else %} No teacher assigned {% endif %}
+          </td>
+          {% if request.user.is_superuser or request.user.role == 'admin' or request.user.role == 'teacher' %}
+          <td class="actions">
+            <!-- Links for View, Edit, Delete actions (these can be expanded with actual URLs) -->
+
+            <a href="{% url 'classroom_edit' classroom.id %}" class="btn edit">Edit</a>
+
+            <a href="{% url 'delete_classroom' classroom.id %}" class="btn delete">Delete</a>
+          </td>
+          {% endif %}
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+
+  {% endblock content %}

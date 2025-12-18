@@ -1,0 +1,47 @@
+{% extends 'dashboard/base.html'%} {% block content%}
+
+<div class="container">
+  <h1>Welcome : {{user.username}}</h1>
+  <h2>Cashier Dashboard</h2>
+  <br />
+  <!-- TABLE -->
+  <td>
+    <a href="{% url 'cashier_create'%}" class="btn view">Add Cashier</a>
+  </td>
+  <div class="table-wrapper">
+    <table class="responsive-table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Date Joined</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cashier in cashiers %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ cashier.username }}</td>
+          <td>{{ cashier.email }}</td>
+          <td>{{ cashier.date_joined|date:"Y-m-d H:i" }}</td>
+          <td class="actions">
+            <!-- Links for View, Edit, Delete actions (these can be expanded with actual URLs) -->
+
+            <a href="{% url 'cashier_update' cashier.id %}" class="btn edit"
+              >Edit</a
+            >
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">No cashiers found.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+ 
+</div>
+{% endblock content%}

@@ -1,0 +1,63 @@
+<!-- classroom_edit.html -->
+{% extends 'dashboard/base.html' %} {% block content %}
+<div class="container">
+  <h1>Edit Classroom</h1>
+  <div class="form-wrapper">
+    <form
+      class="responsive-form"
+      method="POST"
+      action="{% url 'classroom_edit' id=classroom.id %}"
+    >
+      {% csrf_token %} {% if error %}
+      <div class="error">{{ error }}</div>
+      {% endif %}
+
+      <div class="form-group">
+        <label for="name">Class Name</label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value="{{ classroom.name }}"
+          required
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="desc">Description</label>
+        <textarea name="desc" id="desc" required>
+{{ classroom.description }}</textarea
+        >
+      </div>
+
+      <!-- Teacher selection -->
+      <div class="form-group">
+        <label for="teacher">Assign Teacher (Optional)</label>
+        <select name="teacher" id="teacher">
+          <option value="">Select a teacher</option>
+          {% for teacher in teachers %}
+          <option
+            value="{{ teacher.id }}"
+            {%
+            if
+            teacher
+            in
+            classroom.teachers.all
+            %}selected{%
+            endif
+            %}
+          >
+            {{ teacher.user_profile.first_name }} {{
+            teacher.user_profile.last_name }}
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <button type="submit" class="submit-btn">Update Classroom</button>
+      <br /><br />
+      <a href="{% url 'classroom_list' %}" class="btn view">Go Back</a>
+    </form>
+  </div>
+</div>
+{% endblock content %}
