@@ -401,6 +401,7 @@ nav ul li a {
     padding: 8px 10px;
     background-color: blue;
     margin-left: 10px;
+    color: white;
 }
 
 
@@ -413,7 +414,7 @@ nav ul li a {
     border-collapse: collapse;
     /* Remove space between borders */
     margin: 20px 0;
-    background-color: #f9f9f9;
+    background-color: navy
     /* Light background color for the table */
 }
 
