@@ -25,13 +25,10 @@ SECRET_KEY = 'django-insecure-i+zr%yl(w@6*-my4hzf&r=&-e6^0sv=^9e(hbt!+tos#by(apg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['school-management-8wvc.onrender.com']
+ALLOWED_HOSTS = ['*']
 
 
-CSRF_TRUSTED_ORIGINS = [
-    'https://school-management-8wvc.onrender.com',  
-    'https://www.school-management-8wvc.onrender.com', 
-]
+
 
 
 
