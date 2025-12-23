@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'schoolapp',
     'gunicorn',
-    'whitenoise,
+    'whitenoise',
 ]
 
 MIDDLEWARE = [
